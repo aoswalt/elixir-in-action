@@ -44,7 +44,10 @@ defmodule TodoList do
       nil -> todo_list
 
       _ ->
-        filtered_entries = Enum.filter(entries, fn(entry) -> entry.id != entry_id end)
+        filtered_entries = Enum.filter(
+          entries,
+          fn({_, entry}) -> entry.id != entry_id end
+        )
         %TodoList{todo_list | entries: filtered_entries}
     end
   end
