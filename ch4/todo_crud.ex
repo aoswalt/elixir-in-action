@@ -36,6 +36,19 @@ defmodule TodoList do
     end
   end
 
+  def delete_entry(
+    %TodoList{entries: entries} = todo_list,
+    entry_id
+  ) do
+    case entries[entry_id] do
+      nil -> todo_list
+
+      _ ->
+        filtered_entries = Enum.filter(entries, fn(entry) -> entry.id != entry_id end)
+        %TodoList{todo_list | entries: filtered_entries}
+    end
+  end
+
   def entries(%TodoList{entries: entries}, date) do
     entries
     |> Stream.filter(fn({_, entry}) -> entry.date == date end)
