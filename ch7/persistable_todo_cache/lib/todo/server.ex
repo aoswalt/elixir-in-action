@@ -6,7 +6,7 @@ defmodule Todo.Server do
   end
 
   def init(list_name) do
-    {:ok, {list_name, Todo.Database.get(list_name) || Todo.List.new}}
+    {:ok, {list_name, Todo.Database.get(list_name) || Todo.List.new()}}
   end
 
   def add_entry(todo_server, new_entry) do

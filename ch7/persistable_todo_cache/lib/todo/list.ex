@@ -2,12 +2,8 @@ defmodule Todo.List do
   defstruct auto_id: 1, entries: Map.new
 
   def new(entries \\ []) do
-    Enum.reduce(
-      entries,
-      %Todo.List{},
-      &add_entry(&2, &1)
-      #fn(entry, todo_list_acc) -> add_entry(todo_list_acc, entry) end
-    )
+    Enum.reduce( entries, %Todo.List{}, &add_entry(&2, &1))
+    #fn(entry, todo_list_acc) -> add_entry(todo_list_acc, entry) end
   end
 
   def add_entry(
